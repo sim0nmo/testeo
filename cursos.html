@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos - ConnectEd</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 1rem 0;
+            color: #00a478;
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem auto;
+            padding: 1rem;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-container select {
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+        }
+
+        .courses-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            padding: 1rem;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .course-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 1rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .course-card h3 {
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+            color: #00a478;
+        }
+
+        .course-card p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .course-card span {
+            display: block;
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 0.5rem;
+        }
+
+        .join-button {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #00a478;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+
+        .join-button:hover {
+            background-color: #007d5f;
+        }
+
+        .back-button {
+            display: block;
+            text-align: center;
+            margin: 1.5rem auto;
+            max-width: 200px;
+            padding: 0.8rem 1rem;
+            background-color: #ff6464;
+            color: #fff;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #e04c4c;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <h1>Cursos Disponibles</h1>
+
+    <!-- Filtros -->
+    <div class="filter-container">
+        <select id="filter-specialty">
+            <option value="">Filtrar por especialidad</option>
+            <option value="Administración">Administración</option>
+            <option value="Biología">Biología</option>
+            <option value="Ingeniería">Ingeniería</option>
+            <option value="Diseño">Diseño</option>
+            <option value="Ciencias Políticas">Ciencias Políticas</option>
+        </select>
+        <select id="filter-duration">
+            <option value="">Filtrar por duración</option>
+            <option value="Corta">Corta (1-3 meses)</option>
+            <option value="Media">Media (4-6 meses)</option>
+            <option value="Larga">Larga (7-12 meses)</option>
+        </select>
+        <select id="filter-rating">
+            <option value="">Filtrar por valoración</option>
+            <option value="5">★★★★★</option>
+            <option value="4">★★★★☆</option>
+            <option value="3">★★★☆☆</option>
+        </select>
+    </div>
+
+    <!-- Cursos -->
+    <div class="courses-container" id="courses-container">
+        <!-- Los cursos se generarán dinámicamente -->
+    </div>
+
+    <!-- Botón para retroceder -->
+    <a href="dashboard.html" class="back-button">Volver al Dashboard</a>
+
+    <script>
+        // Datos completos de los 20 cursos
+        const courses = [
+            { title: "Curso de Administración", specialty: "Administración", duration: "Media", rating: 5, description: "Aprende a liderar equipos y tomar decisiones estratégicas." },
+            { title: "Biología Molecular", specialty: "Biología", duration: "Larga", rating: 4, description: "Fundamentos de biología molecular y genética avanzada." },
+            { title: "Diseño Gráfico Digital", specialty: "Diseño", duration: "Media", rating: 5, description: "Explora herramientas del diseño gráfico digital." },
+            { title: "Introducción a Ingeniería Civil", specialty: "Ingeniería", duration: "Corta", rating: 4, description: "Conceptos básicos para iniciar en la ingeniería civil." },
+            { title: "Marketing Estratégico", specialty: "Administración", duration: "Media", rating: 5, description: "Técnicas avanzadas para el marketing estratégico." },
+            { title: "Ecología y Medio Ambiente", specialty: "Biología", duration: "Larga", rating: 3, description: "Conservación y protección de los ecosistemas." },
+            { title: "Historia de Ciencias Políticas", specialty: "Ciencias Políticas", duration: "Corta", rating: 4, description: "Historia y evolución de las ciencias políticas." },
+            { title: "Desarrollo Web Frontend", specialty: "Ingeniería", duration: "Media", rating: 5, description: "Diseña y desarrolla sitios web modernos." },
+            { title: "Diseño de Interiores", specialty: "Diseño", duration: "Larga", rating: 5, description: "Domina el diseño de espacios interiores." },
+            { title: "Gestión de Recursos Humanos", specialty: "Administración", duration: "Corta", rating: 3, description: "Gestión del talento humano y liderazgo." },
+            { title: "Genética Avanzada", specialty: "Biología", duration: "Larga", rating: 4, description: "Avances en genética y biología molecular." },
+            { title: "Economía Aplicada", specialty: "Ciencias Políticas", duration: "Media", rating: 5, description: "Herramientas económicas para la toma de decisiones." },
+            { title: "Arquitectura Sostenible", specialty: "Diseño", duration: "Larga", rating: 4, description: "Diseño arquitectónico con enfoque sostenible." },
+            { title: "Cálculo para Ingenieros", specialty: "Ingeniería", duration: "Corta", rating: 5, description: "Cálculo aplicado para proyectos de ingeniería." },
+            { title: "Microbiología Básica", specialty: "Biología", duration: "Corta", rating: 3, description: "Estudio de microorganismos y sus aplicaciones." },
+            { title: "Introducción a la Programación", specialty: "Ingeniería", duration: "Media", rating: 4, description: "Conceptos iniciales de programación." },
+            { title: "Fotografía Publicitaria", specialty: "Diseño", duration: "Media", rating: 5, description: "Domina técnicas de fotografía publicitaria." },
+            { title: "Relaciones Internacionales", specialty: "Ciencias Políticas", duration: "Larga", rating: 5, description: "Análisis de relaciones políticas internacionales." },
+            { title: "Contabilidad Financiera", specialty: "Administración", duration: "Media", rating: 4, description: "Gestión y análisis financiero contable." },
+            { title: "Análisis de Datos", specialty: "Ingeniería", duration: "Larga", rating: 5, description: "Técnicas avanzadas de análisis de datos." },
+        ];
+
+        // Renderizar cursos
+        const renderCourses = (filteredCourses) => {
+            const container = document.getElementById("courses-container");
+            container.innerHTML = "";
+            filteredCourses.forEach((course, index) => {
+                container.innerHTML += `
+                    <div class="course-card">
+                        <h3>${course.title}</h3>
+                        <p>Especialidad: ${course.specialty}</p>
+                        <p>Duración: ${course.duration}</p>
+                        <span>Valoración: ${"★".repeat(course.rating)}${"☆".repeat(5 - course.rating)}</span>
+                        <button class="join-button" onclick="joinCourse(${index})">Unirse</button>
+                    </div>
+                `;
+            });
+        };
+
+        // Función para unirse a un curso y redirigir a mentorías
+        const joinCourse = (index) => {
+            const selectedCourse = courses[index].title;
+            localStorage.setItem("selectedCourse", selectedCourse);
+            alert(`Te has inscrito en el curso: ${selectedCourse}`);
+            window.location.href = "mentorias.html";
+        };
+
+        // Filtrar cursos
+        const filterCourses = () => {
+            const specialty = document.getElementById("filter-specialty").value;
+            const duration = document.getElementById("filter-duration").value;
+            const rating = document.getElementById("filter-rating").value;
+
+            const filteredCourses = courses.filter(course => {
+                return (
+                    (specialty === "" || course.specialty === specialty) &&
+                    (duration === "" || course.duration === duration) &&
+                    (rating === "" || course.rating === parseInt(rating))
+                );
+            });
+
+            renderCourses(filteredCourses);
+        };
+
+        document.getElementById("filter-specialty").addEventListener("change", filterCourses);
+        document.getElementById("filter-duration").addEventListener("change", filterCourses);
+        document.getElementById("filter-rating").addEventListener("change", filterCourses);
+
+        renderCourses(courses);
+    </script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentorías - ConnectEd</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 1.5rem 0;
+            color: #00a478;
+            font-size: 2rem;
+        }
+
+        p {
+            text-align: center;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .mentorias-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .mentoria-card {
+            background: linear-gradient(145deg, #ffffff, #e6e6e6);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .mentoria-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .mentoria-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .mentoria-card h3 {
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+            color: #00a478;
+        }
+
+        .mentoria-card p {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .join-button {
+            padding: 0.5rem 1rem;
+            background-color: #00a478;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+            margin-right: 0.5rem;
+        }
+
+        .join-button:hover {
+            background-color: #007d5f;
+        }
+
+        .isla-button {
+            padding: 0.5rem 1rem;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+
+        .isla-button:hover {
+            background-color: #0056b3;
+        }
+
+        .joined-message {
+            margin-top: 0.5rem;
+            color: #007d5f;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: none;
+        }
+
+        .back-button {
+            display: block;
+            text-align: center;
+            margin: 1.5rem auto;
+            max-width: 200px;
+            padding: 0.8rem 1rem;
+            background-color: #ff6464;
+            color: #fff;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #e04c4c;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <h1>Mentorías Disponibles</h1>
+    <p id="course-selected">Cargando mentorías relacionadas con tu curso...</p>
+
+    <div class="mentorias-container" id="mentorias-container"></div>
+
+    <a href="cursos.html" class="back-button">Volver a Cursos</a>
+    <a href="dashboard.html"class="back-button">Volver a dashboard</a>
+
+    <script>
+        // Mentorías relacionadas con todos los cursos
+        const mentorias = {
+            "Curso de Administración": [
+                { title: "Liderazgo Efectivo", mentor: "Carlos Díaz", emoji: "📈" },
+                { title: "Gestión de Proyectos", mentor: "Ana Gómez", emoji: "📋" },
+            ],
+            "Biología Molecular": [
+                { title: "Genética Avanzada", mentor: "Dra. María Pérez", emoji: "🧬" },
+                { title: "Microbiología Básica", mentor: "Dr. Luis García", emoji: "🔬" },
+            ],
+        };
+
+        // Obtener contenedores
+        const mentoriasContainer = document.getElementById("mentorias-container");
+        const courseTitle = document.getElementById("course-selected");
+
+        // Cargar mentorías relacionadas
+        const selectedCourse = "Curso de Administración"; // Simulación de curso seleccionado
+        if (selectedCourse && mentorias[selectedCourse]) {
+            courseTitle.textContent = `Mentorías para el curso: ${selectedCourse}`;
+            mentorias[selectedCourse].forEach((mentoria, index) => {
+                const card = document.createElement("div");
+                card.classList.add("mentoria-card");
+                card.innerHTML = `
+                    <div class="mentoria-emoji">${mentoria.emoji}</div>
+                    <h3>${mentoria.title}</h3>
+                    <p>Mentor: ${mentoria.mentor}</p>
+                    <button class="join-button" onclick="joinMentoria(${index})">Unirse</button>
+                    <button class="isla-button" onclick="goToIsla('${mentoria.title}')">Ir a Isla</button>
+                    <div class="joined-message" id="joined-${index}">Te has unido a esta mentoría.</div>
+                `;
+                mentoriasContainer.appendChild(card);
+            });
+        } else {
+            courseTitle.textContent = "No se encontraron mentorías para el curso seleccionado.";
+        }
+
+        // Función para unirse a una mentoría
+        const joinMentoria = (index) => {
+            const joinedMessage = document.getElementById(`joined-${index}`);
+            joinedMessage.style.display = "block";
+        };
+
+        // Función para ir a la página de Isla
+        const goToIsla = (title) => {
+            localStorage.setItem("mentoriaTitle", title);
+            window.location.href = "isla.html";
+        };
+    </script>
+</body>
+</html>

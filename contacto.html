@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - ConnectEd</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1em 2em;
+            background-color: #008d68;
+            color: white;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            margin: 0 1em;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #ffcc00;
+        }
+
+        .logo {
+            height: 50px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            max-width: 800px;
+            margin: 3em auto;
+            background-color: white;
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-section h1 {
+            text-align: center;
+            color: #008d68;
+            margin-bottom: 1em;
+        }
+
+        .contact-section p {
+            text-align: center;
+            margin-bottom: 2em;
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .form-group input, .form-group textarea {
+            padding: 0.8em;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            background-color: #008d68;
+            color: white;
+            border: none;
+            padding: 0.8em 1.5em;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            align-self: center;
+        }
+
+        .submit-btn:hover {
+            background-color: #006f53;
+        }
+
+        .submit-btn:active {
+            transform: scale(0.95);
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.85em;
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .navbar a {
+                margin: 0.5em 0;
+            }
+
+            .contact-section {
+                margin: 1em;
+                padding: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <img src="logo.png" alt="Logo de ConnectEd" class="logo">
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="promociones.html">Promociones</a>
+            <a href="testimonio.html">Testimonios</a>
+            <a href="somos.html">Quiénes Somos</a>
+            <a href="contacto.html" class="active">Contacto</a>
+        </nav>
+    </header>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <h1>Contáctanos</h1>
+        <p>Estamos aquí para ayudarte. Completa el formulario y nos pondremos en contacto contigo lo antes posible.</p>
+        <form class="contact-form" id="contactForm">
+            <div class="form-group">
+                <label for="name">Nombre Completo</label>
+                <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+                <div class="error-message" id="nameError">Por favor, introduce tu nombre.</div>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo Electrónico</label>
+                <input type="email" id="email" name="email" placeholder="Tu correo" required>
+                <div class="error-message" id="emailError">Por favor, introduce un correo válido.</div>
+            </div>
+            <div class="form-group">
+                <label for="message">Mensaje</label>
+                <textarea id="message" name="message" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                <div class="error-message" id="messageError">Por favor, introduce tu mensaje.</div>
+            </div>
+            <button type="submit" class="submit-btn">Enviar Mensaje</button>
+        </form>
+    </section>
+
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Evitar envío por defecto
+
+            const name = document.getElementById("name");
+            const email = document.getElementById("email");
+            const message = document.getElementById("message");
+
+            let valid = true;
+
+            // Validación de Nombre
+            if (name.value.trim() === "") {
+                document.getElementById("nameError").style.display = "block";
+                valid = false;
+            } else {
+                document.getElementById("nameError").style.display = "none";
+            }
+
+            // Validación de Correo Electrónico
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value)) {
+                document.getElementById("emailError").style.display = "block";
+                valid = false;
+            } else {
+                document.getElementById("emailError").style.display = "none";
+            }
+
+            // Validación de Mensaje
+            if (message.value.trim() === "") {
+                document.getElementById("messageError").style.display = "block";
+                valid = false;
+            } else {
+                document.getElementById("messageError").style.display = "none";
+            }
+
+            if (valid) {
+                alert("Tu mensaje ha sido enviado. ¡Gracias por contactarnos!");
+                document.getElementById("contactForm").reset(); // Limpiar formulario
+            }
+        });
+    </script>
+</body>
+</html>

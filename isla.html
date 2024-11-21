@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentorías - ConnectEd</title>
+    <style>
+        /* Estilo Global */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 1.5rem 0;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        p {
+            text-align: center;
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        /* Mentorías */
+        .mentorias-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .mentoria-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .mentoria-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .mentoria-emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .mentoria-card h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #007bff;
+        }
+
+        .mentoria-card p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .join-button {
+            padding: 0.8rem 1.2rem;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .join-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        /* Islas */
+        .isla-container {
+            display: none;
+            max-width: 800px;
+            margin: 2rem auto;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .volver-btn {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .volver-btn:hover {
+            background-color: #e9ecef;
+            transform: scale(1.05);
+        }
+
+        .circle {
+            width: 30px;
+            height: 30px;
+            background-color: #007bff;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 1rem;
+        }
+
+        .isla {
+            background-color: #007bff;
+            padding: 20px;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .isla:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .isla.video { grid-column: span 2; height: 150px; background-color: #0062cc; }
+        .isla.chat { height: 150px; background-color: #0056b3; }
+        .isla.descripcion { grid-column: span 2; height: 100px; background-color: #004085; }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Título -->
+    <h1>Mentorías Disponibles</h1>
+    <p id="course-selected">Selecciona una mentoría para explorar más detalles</p>
+
+    <!-- Lista de Mentorías -->
+    <div class="mentorias-container" id="mentorias-container"></div>
+
+    <!-- Diseño de Islas -->
+    <div class="isla-container" id="isla-container">
+        <div class="header">
+            <button class="volver-btn" onclick="volver()">Volver a Mentorías</button>
+            <div class="circle"></div>
+        </div>
+        <div class="grid">
+            <div class="isla video"><p id="titulo-isla">TÍTULO DE LA MENTORÍA</p></div>
+            <div class="isla chat"><p>CHAT EN VIVO</p></div>
+            <div class="isla descripcion"><p>DESCRIPCIÓN DETALLADA</p></div>
+        </div>
+    </div>
+
+    <script>
+        const mentorias = {
+            "Curso de Administración": [
+                { title: "Liderazgo Efectivo", mentor: "Carlos Díaz", emoji: "📈", description: "Aprende liderazgo profesional." },
+                { title: "Gestión de Proyectos", mentor: "Ana Gómez", emoji: "📋", description: "Administra tus proyectos con éxito." },
+            ]
+        };
+
+        const mentoriasContainer = document.getElementById("mentorias-container");
+        const islaContainer = document.getElementById("isla-container");
+        const tituloIsla = document.getElementById("titulo-isla");
+
+        // Mostrar mentorías disponibles
+        mentorias["Curso de Administración"].forEach((mentoria) => {
+            const card = document.createElement("div");
+            card.classList.add("mentoria-card");
+            card.innerHTML = `
+                <div class="mentoria-emoji">${mentoria.emoji}</div>
+                <h3>${mentoria.title}</h3>
+                <p>Mentor: ${mentoria.mentor}</p>
+                <button class="join-button" onclick="mostrarIsla('${mentoria.title}', '${mentoria.description}')">Explorar</button>
+            `;
+            mentoriasContainer.appendChild(card);
+        });
+
+        // Mostrar islas con información detallada
+        const mostrarIsla = (title, description) => {
+            mentoriasContainer.style.display = "none";
+            islaContainer.style.display = "block";
+            tituloIsla.textContent = `${title}`;
+            document.querySelector(".isla.descripcion p").textContent = description;
+        };
+
+        // Volver a la lista de mentorías
+        const volver = () => {
+            mentoriasContainer.style.display = "grid";
+            islaContainer.style.display = "none";
+        };
+    </script>
+</body>
+</html>

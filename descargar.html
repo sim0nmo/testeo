@@ -1,0 +1,114 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descarga nuestra App - ConnectEd</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos específicos para la página de descargas */
+
+        /* Fondo sólido */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #13aa87; /* Color de fondo sólido */
+            color: #333;
+        }
+
+        /* Contenedor de descarga */
+        .download-page {
+            text-align: center;
+            padding: 20px;
+            max-width: 600px;
+        }
+
+        /* Título */
+        .download-page h1 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        /* Descripción */
+        .download-page p {
+            color: #333;
+            font-size: 1em;
+            margin-bottom: 20px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Imagen de la aplicación */
+        .app-image img {
+            width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Opciones de descarga */
+        .download-options {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* Botones de opciones de descarga */
+        .option-card img {
+            width: 160px;
+            height: auto;
+            transition: transform 0.3s ease;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Efecto hover */
+        .option-card img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Contenido de la Página de Descargas -->
+    <main class="download-page">
+        <h1>DESCARGA NUESTRA APP</h1>
+        <p>Únete a ConnectEd y transforma tu experiencia universitaria en una carrera exitosa. Fortalece tu red profesional desde el primer día.</p>
+        <p>Disponible en:</p>
+
+        <!-- Imagen de la aplicación -->
+        <div class="app-image">
+            <img src="app-image.png" alt="Imagen de la aplicación"> <!-- Imagen de la app -->
+        </div>
+
+        <!-- Opciones de descarga interactivas -->
+        <section class="download-options">
+            <div class="option-card">
+                <a href="https://play.google.com/">
+                    <img src="1.png" alt="Google Play">
+                </a>
+            </div>
+            <div class="option-card">
+                <a href="https://www.apple.com/app-store/">
+                    <img src="2.png" alt="App Store">
+                </a>
+            </div>
+            <div class="option-card">
+                <a href="https://appgallery.huawei.com/">
+                    <img src="3.png" alt="AppGallery">
+                </a>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - ConnectEd</title>
+    <style>
+        /* Variables CSS */
+        :root {
+            --color-primario: #00a478;
+            --color-primario-hover: #007d5f;
+            --color-secundario: #ff6464;
+            --color-secundario-hover: #e04c4c;
+            --color-texto: #333;
+            --color-fondo: #f9f9f9;
+            --sombra-tarjeta: 0 6px 20px rgba(0, 0, 0, 0.1);
+            --sombra-hover: 0 10px 25px rgba(0, 0, 0, 0.2);
+            --transicion-rapida: 0.3s;
+            --transicion-lenta: 0.6s;
+        }
+
+        /* Estilos generales */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            animation: fadeIn var(--transicion-lenta) ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--color-texto);
+            margin-bottom: 1rem;
+            text-align: center;
+            animation: slideDown var(--transicion-lenta) ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        p {
+            margin: 0.5rem 0;
+            color: #555;
+            text-align: center;
+        }
+
+        /* Contenedor principal */
+        .dashboard-container {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Botones generales */
+        .button {
+            display: block;
+            margin: 1rem auto;
+            max-width: 250px;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            border-radius: 50px;
+            transition: background-color var(--transicion-rapida), transform var(--transicion-rapida);
+            cursor: pointer;
+            box-shadow: var(--sombra-tarjeta);
+        }
+
+        .button:hover {
+            transform: scale(1.05);
+            box-shadow: var(--sombra-hover);
+        }
+
+        .logout-button {
+            background-color: var(--color-secundario);
+        }
+
+        .logout-button:hover {
+            background-color: var(--color-secundario-hover);
+        }
+
+        .cursos-link {
+            background-color: var(--color-primario);
+        }
+
+        .cursos-link:hover {
+            background-color: var(--color-primario-hover);
+        }
+
+        /* Sección general */
+        section {
+            margin-bottom: 2.5rem;
+            padding: 1.5rem;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: var(--sombra-tarjeta);
+            animation: fadeIn var(--transicion-lenta) ease-in-out;
+        }
+
+        section h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Mentores */
+        .mentores-cards {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .mentor-card {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: var(--sombra-tarjeta);
+            width: 240px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform var(--transicion-rapida), box-shadow var(--transicion-rapida);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mentor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--sombra-hover);
+        }
+
+        .mentor-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform var(--transicion-rapida);
+        }
+
+        .mentor-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .mentor-card h3 {
+            margin: 1rem 0;
+            color: var(--color-primario);
+            font-size: 1.3rem;
+        }
+
+        .mentor-card button {
+            background: var(--color-primario);
+            color: #fff;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color var(--transicion-rapida), transform var(--transicion-rapida);
+        }
+
+        .mentor-card button:hover {
+            background-color: var(--color-primario-hover);
+            transform: scale(1.1);
+        }
+
+        /* Mentorías en desarrollo */
+        .mentor-desarrollo {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .mentor-desarrollo-card {
+            background-color: #121212;
+            color: #fff;
+            border-radius: 15px;
+            padding: 1rem;
+            box-shadow: var(--sombra-tarjeta);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-align: center;
+            position: relative;
+            transition: transform var(--transicion-rapida), box-shadow var(--transicion-rapida);
+        }
+
+        .mentor-desarrollo-card:hover {
+            transform: scale(1.05);
+            box-shadow: var(--sombra-hover);
+        }
+
+        .mentor-desarrollo-card img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+
+        .add-mentoria {
+            background-color: var(--color-primario);
+            color: #fff;
+            font-size: 3rem;
+            border-radius: 15px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: background-color var(--transicion-rapida), transform var(--transicion-rapida);
+        }
+
+        .add-mentoria:hover {
+            background-color: var(--color-primario-hover);
+            transform: scale(1.2);
+        }
+
+        /* Eventos */
+        .event-card {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: var(--sombra-tarjeta);
+            padding: 1rem;
+            text-align: center;
+            transition: transform var(--transicion-rapida), box-shadow var(--transicion-rapida);
+        }
+
+        .event-card:hover {
+            transform: scale(1.05);
+            box-shadow: var(--sombra-hover);
+        }
+
+        .event-card .live-tag {
+            display: inline-block;
+            background-color: var(--color-secundario);
+            color: #fff;
+            padding: 0.4rem 0.8rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <a href="index.html" class="button logout-button">Cerrar Sesión</a>
+        <a href="cursos.html" class="button cursos-link">Ir a Cursos</a>
+
+        <section>
+            <h2>Mentores de tu interés</h2>
+            <div class="mentores-cards">
+                <div class="mentor-card">
+                    <img src="image.png" alt="Biología">
+                    <h3>Biología</h3>
+                    <button>Contactar</button>
+                </div>
+                <div class="mentor-card">
+                    <img src="politica.png" alt="Ciencias Políticas">
+                    <h3>Ciencias Políticas</h3>
+                    <button>Contactar</button>
+                </div>
+                <div class="mentor-card">
+                    <img src="computacion.png" alt="Ciencia de la Computación">
+                    <h3>Ciencia de la Computación</h3>
+                    <button>Contactar</button>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Mentorías en desarrollo</h2>
+            <div class="mentor-desarrollo">
+                <div class="mentor-desarrollo-card">
+                    <img src="simon.jpg" alt="Gabriel Molina">
+                    <div>
+                        <h4>Gabriel Molina</h4>
+                        <p>Arquitectura</p>
+                    </div>
+                </div>
+                <div class="add-mentoria" onclick="redirectToMentorias()">+</div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Eventos</h2>
+            <div class="event-card">
+                <span class="live-tag">Live</span>
+                <h4>Mentoría Grupal</h4>
+                <p>Mentora: Carla Díaz</p>
+                <p>Horario: AHORA - 7:00 pm</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function redirectToMentorias() {
+            window.location.href = "mentorias.html";
+        }
+    </script>
+</body>
+</html>

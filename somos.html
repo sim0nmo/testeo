@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiénes Somos - ConnectEd</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5em 2em;
+            background-color: #008d68;
+            color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            height: 50px;
+        }
+
+        .navbar nav {
+            display: flex;
+            gap: 2em;
+        }
+
+        .navbar nav a {
+            text-decoration: none;
+            color: white;
+            font-size: 1em;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .navbar nav a.active {
+            color: #ffcc00;
+        }
+
+        .navbar nav a:hover {
+            color: #ffcc00;
+        }
+
+        /* Quiénes Somos */
+        .about-section {
+            text-align: center;
+            padding: 3em 2em;
+            background-color: #ffffff;
+        }
+
+        .about-section h1 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 0.5em;
+        }
+
+        .about-section p {
+            font-size: 1.2em;
+            color: #555;
+            line-height: 1.8em;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Equipo */
+        .team-section {
+            background-color: #f4f4f9;
+            padding: 3em 2em;
+        }
+
+        .team-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2em;
+            justify-content: center;
+        }
+
+        .team-member {
+            background-color: white;
+            padding: 2em;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 280px;
+        }
+
+        .team-member img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 1em;
+        }
+
+        .team-member h3 {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 0.5em;
+        }
+
+        .team-member p {
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #008d68;
+            color: white;
+            padding: 2em;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 1.5em;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content div {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-content ul li {
+            margin-bottom: 0.5em;
+        }
+
+        .footer-content a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .navbar nav {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .team-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Encabezado -->
+    <header class="navbar">
+        <img src="logo.png" alt="Logo de ConnectEd" class="logo">
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="promociones.html">Promociones</a>
+            <a href="testimonio.html">Testimonios</a>
+            <a href="#" class="active">Quiénes Somos</a>
+            <a href="contacto.html">Contacto</a>
+        </nav>
+    </header>
+
+    <!-- Quiénes Somos -->
+    <section class="about-section">
+        <h1>Quiénes Somos</h1>
+        <p>
+            En <strong>ConnectEd</strong>, nuestro objetivo es ser el puente que conecta estudiantes, profesionales y empresas. 
+            Estamos dedicados a proporcionar herramientas y oportunidades que fomenten el desarrollo profesional y el éxito en el mercado laboral.
+        </p>
+    </section>
+
+    <!-- Nuestro Equipo -->
+    <section class="team-section">
+        <h2 style="text-align: center;">Nuestro Equipo</h2>
+        <div class="team-container">
+            <div class="team-member">
+                <img src="avatar1.png" alt="Joshua Campos">
+                <h3>Campos Roncal, Joshua Piero</h3>
+                <p>Coordinador de Proyectos</p>
+            </div>
+            <div class="team-member">
+                <img src="avatar2.png" alt="Angelo Cervantes">
+                <h3>Cervantes Marreros, Angelo Paolo</h3>
+                <p>Analista de Sistemas</p>
+            </div>
+            <div class="team-member">
+                <img src="avatar3.png" alt="Moisés Espinoza">
+                <h3>Espinoza Chávez, Moisés</h3>
+                <p>Gerente de Tecnología</p>
+            </div>
+            <div class="team-member">
+                <img src="avatar4.png" alt="Bedith Lozano">
+                <h3>Lozano Isuiza, Bedith</h3>
+                <p>Diseñadora UX/UI</p>
+            </div>
+            <div class="team-member">
+                <img src="avatar5.png" alt="Raul Meza">
+                <h3>Meza Puchoc, Raul Jean</h3>
+                <p>Especialista en Marketing</p>
+            </div>
+            <div class="team-member">
+                <img src="avatar6.png" alt="Simón Molina">
+                <h3>Molina Chirinos, Simón Gabriel</h3>
+                <p>Desarrollador Backend</p>
+            </div>
+            <div class="team-member">
+                <img src="avatar7.png" alt="María Muñoz">
+                <h3>Muñoz Machuca, Maria Elena</h3>
+                <p>Recursos Humanos</p>
+            </div>
+            <div class="team-member">
+                <img src="avatar8.png" alt="Mariano Oblitas">
+                <h3>Oblitas Davila, Mariano Moises</h3>
+                <p>Administrador de Base de Datos</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <h4>Características</h4>
+                <ul>
+                    <li><a href="#">Perfiles Profesionales</a></li>
+                    <li><a href="#">Conexión con Mentores</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Síguenos</h4>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <p>© 2024 ConnectEd</p>
+    </footer>
+</body>
+</html>

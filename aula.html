@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Cursos - ConnectEd</title>
+    <style>
+        :root {
+            --color-primario: #00a478;
+            --color-texto: #333;
+            --color-fondo: #f9f9f9;
+            --sombra-tarjeta: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--sombra-tarjeta);
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .courses-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .courses-list li {
+            background: var(--color-primario);
+            color: white;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 10px;
+            box-shadow: var(--sombra-tarjeta);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .courses-list li:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .button {
+            display: block;
+            margin: 2rem auto 0 auto;
+            padding: 1rem 1.5rem;
+            max-width: 200px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            background-color: var(--color-primario);
+            border-radius: 50px;
+            box-shadow: var(--sombra-tarjeta);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mis Cursos</h1>
+        <ul class="courses-list">
+            <li>Curso de Matemáticas Avanzadas</li>
+            <li>Curso de Física Teórica</li>
+            <li>Curso de Programación en JavaScript</li>
+        </ul>
+        <a href="dashboard.html" class="button">Regresar al Dashboard</a>
+    </div>
+</body>
+</html>
